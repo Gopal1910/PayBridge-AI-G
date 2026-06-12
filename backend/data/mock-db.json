@@ -1,0 +1,136 @@
+{
+  "users": {
+    "uBIbXDrFIpaCBJutilso8Qec2jp2": {
+      "id": "uBIbXDrFIpaCBJutilso8Qec2jp2",
+      "name": "Gopal Kumar Mahto",
+      "email": "mgopalkumar009@gmail.com",
+      "companyId": "d0s9m8he6af",
+      "role": "Company",
+      "createdAt": "2026-06-12T11:21:52.344Z",
+      "updatedAt": "2026-06-12T11:21:52.344Z"
+    },
+    "le6b6e8bnrq": {
+      "id": "le6b6e8bnrq",
+      "name": "Gopal Kumar Mahto",
+      "email": "gkprogammer@gmail.com",
+      "companyId": "7s2eamloi0o",
+      "role": "Company",
+      "passwordHash": "$2a$10$jqVJAzQZLvjw9PtBASd0muuf8DfKzit8dyf6.nEK831J31duiWrou",
+      "createdAt": "2026-06-12T11:23:53.812Z",
+      "updatedAt": "2026-06-12T11:23:53.813Z"
+    }
+  },
+  "companies": {
+    "d0s9m8he6af": {
+      "name": "Gopal Kumar Mahto's Company",
+      "industry": "General B2B",
+      "plan": "Standard",
+      "createdAt": "2026-06-12T11:21:52.341Z",
+      "id": "d0s9m8he6af",
+      "updatedAt": "2026-06-12T11:21:52.343Z"
+    },
+    "7s2eamloi0o": {
+      "name": "AstraGenX",
+      "industry": "SaaS",
+      "plan": "Standard",
+      "createdAt": "2026-06-12T11:23:53.709Z",
+      "id": "7s2eamloi0o",
+      "updatedAt": "2026-06-12T11:23:53.709Z"
+    }
+  },
+  "invoices": {},
+  "contracts": {},
+  "negotiations": {},
+  "buyers": {},
+  "analytics": {
+    "d0s9m8he6af": {
+      "companyId": "d0s9m8he6af",
+      "totalInvoiced": 0,
+      "totalPaid": 0,
+      "totalPending": 0,
+      "totalOverdue": 0,
+      "totalNegotiating": 0,
+      "averageDso": 34,
+      "overdueCount": 0,
+      "riskIndex": 100,
+      "cashflowForecast": [
+        {
+          "month": "June",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        },
+        {
+          "month": "July",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        },
+        {
+          "month": "August",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        }
+      ],
+      "riskScoreDistribution": {
+        "low": 1,
+        "medium": 0,
+        "high": 0
+      },
+      "topInsights": [
+        "Improving average DSO from 34 days to 30 days would unlock approximately $0 in operating cash.",
+        "You have 0 overdue invoice(s). Fast-tracking these accounts will boost your working capital reserve immediately.",
+        "Your highest credit exposure is concentrated in 2 major buyers. Consider adding credit insurance protection."
+      ],
+      "updatedAt": "2026-06-12T11:30:35.388Z",
+      "id": "d0s9m8he6af",
+      "createdAt": "2026-06-12T11:21:52.496Z"
+    },
+    "7s2eamloi0o": {
+      "companyId": "7s2eamloi0o",
+      "totalInvoiced": 0,
+      "totalPaid": 0,
+      "totalPending": 0,
+      "totalOverdue": 0,
+      "totalNegotiating": 0,
+      "averageDso": 34,
+      "overdueCount": 0,
+      "riskIndex": 100,
+      "cashflowForecast": [
+        {
+          "month": "June",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        },
+        {
+          "month": "July",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        },
+        {
+          "month": "August",
+          "inflow": 0,
+          "outflow": 0,
+          "forecast": 0
+        }
+      ],
+      "riskScoreDistribution": {
+        "low": 1,
+        "medium": 0,
+        "high": 0
+      },
+      "topInsights": [
+        "Improving average DSO from 34 days to 30 days would unlock approximately $0 in operating cash.",
+        "You have 0 overdue invoice(s). Fast-tracking these accounts will boost your working capital reserve immediately.",
+        "Your highest credit exposure is concentrated in 2 major buyers. Consider adding credit insurance protection."
+      ],
+      "updatedAt": "2026-06-12T11:24:54.889Z",
+      "id": "7s2eamloi0o",
+      "createdAt": "2026-06-12T11:24:18.068Z"
+    }
+  },
+  "auditLogs": {}
+}
