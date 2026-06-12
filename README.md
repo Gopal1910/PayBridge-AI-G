@@ -1,72 +1,202 @@
-# PayBridge AI — B2B Payment Intelligence Workspace
+# PayBridge AI
 
-This is the workspace for **PayBridge AI**, a payment intelligence platform built to help SMEs evaluate payment cycle risks and negotiate terms.
+AI-powered B2B payment intelligence platform designed to help businesses manage invoices, analyze payment risks, monitor cash flow, and improve payment decisions.
 
-## Repository Structure
-
-The workspace is organized into two primary subdirectories:
-
-- **`/frontend`**: Re-architected client-side Single Page Application (React 19, Vite, Tailwind CSS v4, Lucide Icons, and Recharts) configured with a development proxy.
-- **`/backend`**: Production-ready Express API (Node.js, TypeScript, Winston Logger, and Multer) integrated with Firebase, OCR Parsing (`pdf-parse`), and local AI (`Ollama Llama 3`).
+Built to explore how AI and financial workflows can improve business operations.
 
 ---
 
-## Getting Started
+## Overview
 
-### 1. Pre-requisites
-- Node.js (v18+)
-- Ollama (Optional, for real local AI model analysis. Install from [ollama.com](https://ollama.com))
+PayBridge AI is a modern web platform focused on simplifying payment and invoice workflows.
 
----
+The platform provides tools to:
 
-### 2. Backend Setup & Run
+- Track invoices
+- Analyze contracts
+- Monitor buyer reliability
+- Generate payment insights
+- Visualize business cash flow
 
-1. Navigate to the backend directory and install dependencies:
-   ```bash
-   cd backend
-   npm install
-   ```
-
-2. Configure environment variables. Copy the example template:
-   ```bash
-   cp .env.example .env
-   ```
-   *(By default, the server runs in **mock fallback mode** out-of-the-box if Firebase keys are empty).*
-
-3. Start the server in development mode:
-   ```bash
-   npm run dev
-   ```
-   The backend API will start on `http://localhost:5000`.
+The goal of this project is to combine modern frontend architecture with AI-assisted financial workflows.
 
 ---
 
-### 3. Frontend Setup & Run
+## Features
 
-1. Open a new terminal, navigate to the frontend directory, and install dependencies:
-   ```bash
-   cd frontend
-   npm install
-   ```
+### Authentication
+- User Registration
+- Secure Login
+- JWT Authentication
+- Role-Based Access
 
-2. Start the Vite client dev server:
-   ```bash
-   npm run dev
-   ```
-   The frontend UI will start on `http://localhost:3000`. Any request targeting `/api/*` is automatically proxied to the backend on port `5000`.
+### Dashboard
+- Business Overview
+- Financial Metrics
+- Payment Monitoring
+
+### Invoice Management
+- Upload invoices
+- View status
+- Track due dates
+
+### Contract Analysis
+- Upload contract documents
+- Extract payment terms
+- Generate recommendations
+
+### Buyer Analytics
+- Buyer trust overview
+- Historical records
+- Risk indicators
+
+### AI Insights
+- Risk analysis
+- Payment recommendations
+- Business insights
+
+### Settings
+- Profile Management
+- Security Settings
+- Workspace Configuration
 
 ---
 
-## Compiling for Production
+## Tech Stack
 
-To compile both services for production:
+### Frontend
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- Firebase Firestore
+
+### Authentication
+- Firebase Auth
+- JWT
+
+### Storage
+- Firebase Storage
+
+### AI
+- Ollama
+- Llama
+
+---
+
+## Project Structure
+
+```plaintext
+paybridge-ai/
+
+frontend/
+
+backend/
+
+firebase/
+
+services/
+
+components/
+
+pages/
+
+routes/
+
+controllers/
+
+middlewares/
+
+ai/
+
+storage/
+
+public/
+```
+
+---
+
+## Installation
+
+Clone the repository
 
 ```bash
-# Build Backend
-cd backend
-npm run build
-
-# Build Frontend
-cd ../frontend
-npm run build
+git clone https://github.com/gopal1910/paybridge-ai-g.git
 ```
+
+Enter project directory
+
+```bash
+cd paybridge-ai
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run project
+
+```bash
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=
+
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+
+JWT_SECRET=
+
+OLLAMA_URL=
+```
+
+---
+
+## Future Improvements
+
+- AI prediction engine
+- Advanced analytics
+- Multi-company support
+- Export reports
+- Notification system
+- Mobile application
+
+---
+
+## Learning Goals
+
+This project was built to explore:
+
+- Full-stack architecture
+- Authentication systems
+- AI integration
+- Financial workflow design
+- Scalable dashboard development
+
+---
+
+## License
+
+MIT
+
+---
+
+Developed by Gopal
