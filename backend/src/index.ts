@@ -19,7 +19,7 @@ import uploadRouter from "./routes/upload.js";
 import dashboardRouter from "./routes/dashboard.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
 
 // ==========================================
 // CORE MIDDLEWARES
@@ -98,7 +98,12 @@ app.use(errorHandler);
 // ==========================================
 // SERVER INITIALIZATION
 // ==========================================
-app.listen(PORT, () => {
-  logger.info(`🚀 PayBridge AI API running on http://localhost:${PORT}`);
-  logger.info(`Mode: ${process.env.NODE_ENV || "development"}`);
-});
+app.listen(
+  PORT,
+  "0.0.0.0",
+  () => {
+    console.log(`🚀 PayBridge API running on port ${PORT}`);
+    logger.info(`🚀 PayBridge API running on port ${PORT}`);
+    logger.info(`Mode: ${process.env.NODE_ENV || "development"}`);
+  }
+);

@@ -345,7 +345,9 @@ class MockBucket {
       },
       getSignedUrl: async (config: any) => {
         // Return a mock local URL
-        return [`http://localhost:5000/api/mock-storage/${fileName}`];
+        const apiPort = process.env.PORT || 5000;
+        const apiHost = process.env.API_URL || `http://localhost:${apiPort}`;
+        return [`${apiHost}/api/mock-storage/${fileName}`];
       },
       delete: async () => {
         if (fs.existsSync(destPath)) {
