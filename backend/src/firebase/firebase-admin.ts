@@ -14,37 +14,41 @@ const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
 const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 const storageBucket = process.env.FIREBASE_STORAGE_BUCKET;
 
-let isFirebaseConfigured = false;
+export let isFirebaseConfigured = false;
 let adminApp: admin.app.App | null = null;
-let db: any = null;
-let adminAuth: any = null;
-let bucket: any = null;
+export let db: any = null;
+export let adminAuth: any = null;
+export let bucket: any = null;
 
-if (projectId && clientEmail && privateKey && privateKey.trim() !== "") {
-  try {
-    // Format private key (replace literal \n with newlines)
-    const formattedPrivateKey = privateKey.replace(/\\n/g, "\n");
+export function initializeFirebase() {
+  if (projectId && clientEmail && privateKey && privateKey.trim() !== "") {
+    try {
+      const formattedPrivateKey = privateKey.replace(/\\n/g, "\n");
 
-    adminApp = admin.initializeApp({
-      credential: admin.credential.cert({
-        projectId,
-        clientEmail,
-        privateKey: formattedPrivateKey,
-      }),
-      storageBucket,
-    });
+      adminApp = admin.initializeApp({
+        credential: admin.credential.cert({
+          projectId,
+          clientEmail,
+          privateKey: formattedPrivateKey,
+        }),
+        storageBucket,
+      });
 
-    db = adminApp.firestore();
-    adminAuth = adminApp.auth();
-    bucket = adminApp.storage().bucket();
-    isFirebaseConfigured = true;
-    logger.info("Firebase Admin SDK successfully initialized.");
-  } catch (error) {
-    logger.error("Failed to initialize Firebase Admin SDK. Falling back to Mock Database.");
-    logger.error(error instanceof Error ? error.message : String(error));
+      db = adminApp.firestore();
+      adminAuth = adminApp.auth();
+      bucket = adminApp.storage().bucket();
+      isFirebaseConfigured = true;
+      logger.info("Firebase Admin SDK successfully initialized.");
+      console.log("FIREBASE_OK");
+    } catch (error) {
+      logger.error("Failed to initialize Firebase Admin SDK. Falling back to Mock Database.");
+      logger.error(error instanceof Error ? error.message : String(error));
+      setupMockDb();
+    }
+  } else {
+    logger.warn("Firebase credentials missing or incomplete in environment variables. Running in MOCK DATABASE mode.");
+    setupMockDb();
   }
-} else {
-  logger.warn("Firebase credentials missing or incomplete in environment variables. Running in MOCK DATABASE mode.");
 }
 
 // ==========================================
@@ -345,8 +349,8 @@ class MockBucket {
       },
       getSignedUrl: async (config: any) => {
         // Return a mock local URL
-        const apiPort = process.env.PORT || 5000;
-        const apiHost = process.env.API_URL || `http://localhost:${apiPort}`;
+        const apiPort = process.env.PORT || 8080;
+        const apiHost = process.env.API_URL || `http://127.0.0.1:${apiPort}`;
         return [`${apiHost}/api/mock-storage/${fileName}`];
       },
       delete: async () => {
@@ -365,10 +369,11 @@ class MockStorage {
   }
 }
 
-if (!isFirebaseConfigured) {
+export function setupMockDb() {
   db = new MockFirestore();
   adminAuth = new MockAuth();
   bucket = new MockBucket(process.env.FIREBASE_STORAGE_BUCKET || "mock-bucket");
 }
 
-export { isFirebaseConfigured, db, adminAuth, bucket };
+// Initialize mock DB by default
+setupMockDb();

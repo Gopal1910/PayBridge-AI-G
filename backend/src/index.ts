@@ -18,8 +18,12 @@ import aiRouter from "./routes/ai.js";
 import uploadRouter from "./routes/upload.js";
 import dashboardRouter from "./routes/dashboard.js";
 
+import { initializeFirebase } from "./firebase/firebase-admin.js";
+
+console.log("SERVER_BOOT");
+
 const app = express();
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT) || 8080;
 
 // ==========================================
 // CORE MIDDLEWARES
@@ -35,7 +39,7 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL
       ? [process.env.CLIENT_URL]
-      : ["http://localhost:5173", "http://localhost:3000"],
+      : [],
     credentials: true,
   })
 );
@@ -57,18 +61,18 @@ app.use(
 // Base healthcheck
 app.get("/", (req, res) => {
   res.status(200).json({
-    status: "healthy",
-    message: "PayBridge AI Backend Service is running.",
-    timestamp: new Date().toISOString()
+    status: "healthy"
   });
 });
 
-app.get("/health", (req, res) => {
-  res.status(200).json({
-    status: "healthy",
-    uptime: process.uptime()
-  });
-});
+app.get(
+  "/health",
+  (_, res) =>
+    res.status(200)
+      .json({
+        status: "healthy"
+      })
+);
 
 // ==========================================
 // API ROUTES
@@ -98,12 +102,25 @@ app.use(errorHandler);
 // ==========================================
 // SERVER INITIALIZATION
 // ==========================================
-app.listen(
-  PORT,
-  "0.0.0.0",
-  () => {
-    console.log(`🚀 PayBridge API running on port ${PORT}`);
-    logger.info(`🚀 PayBridge API running on port ${PORT}`);
-    logger.info(`Mode: ${process.env.NODE_ENV || "development"}`);
-  }
-);
+function startServer() {
+  app.listen(
+    PORT,
+    "0.0.0.0",
+    () => {
+      console.log(`Listening ${PORT}`);
+      console.log("APP_LISTEN");
+      logger.info(`🚀 PayBridge API running on port ${PORT}`);
+      logger.info(`Mode: ${process.env.NODE_ENV || "production"}`);
+      
+      // Initialize Firebase Admin SDK lazily after the server is up and listening
+      initializeFirebase();
+    }
+  );
+}
+
+try {
+  startServer();
+} catch (e) {
+  console.error(e);
+  process.exit(1);
+}
