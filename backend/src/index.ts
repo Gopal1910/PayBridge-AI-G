@@ -1,13 +1,14 @@
 import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
-import { securityHeaders, corsOptions, apiLimiter } from "./middlewares/security.js";
+import cors from "cors";
+import { securityHeaders, apiLimiter } from "./middlewares/security.js";
 import { errorHandler } from "./middlewares/error.js";
 import logger from "./utils/logger.js";
 import { NotFoundError } from "./utils/errors.js";
 
 // Import API Routers
-import authRouter from "./routes/auth.js";
+import authRoutes from "./routes/auth.js";
 import invoicesRouter from "./routes/invoices.js";
 import contractsRouter from "./routes/contracts.js";
 import buyersRouter from "./routes/buyers.js";
@@ -30,7 +31,14 @@ app.use(express.urlencoded({ extended: true, limit: "15mb" }));
 
 // Wire security configurations
 app.use(securityHeaders);
-app.use(corsOptions);
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL
+      ? [process.env.CLIENT_URL]
+      : ["http://localhost:5173", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use(apiLimiter);
 
 // Configure HTTP logger
@@ -65,7 +73,7 @@ app.get("/health", (req, res) => {
 // ==========================================
 // API ROUTES
 // ==========================================
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRoutes);
 app.use("/api/invoices", invoicesRouter);
 app.use("/api/contracts", contractsRouter);
 app.use("/api/buyers", buyersRouter);

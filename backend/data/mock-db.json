@@ -18,6 +18,25 @@
       "passwordHash": "$2a$10$jqVJAzQZLvjw9PtBASd0muuf8DfKzit8dyf6.nEK831J31duiWrou",
       "createdAt": "2026-06-12T11:23:53.812Z",
       "updatedAt": "2026-06-12T11:23:53.813Z"
+    },
+    "mock-google-uid-7465737440": {
+      "id": "mock-google-uid-7465737440",
+      "name": "test",
+      "email": "test@example.com",
+      "companyId": "1999kplfelx",
+      "role": "Company",
+      "createdAt": "2026-06-12T19:00:54.382Z",
+      "updatedAt": "2026-06-12T19:00:54.383Z"
+    },
+    "nqfgt8oqq5": {
+      "id": "nqfgt8oqq5",
+      "name": "Test User",
+      "email": "test-user@example.com",
+      "companyId": "du8srg12905",
+      "role": "Company",
+      "passwordHash": "$2a$10$DqCtcCimbPsIW1Rd9EVlJOanxy0kHAZAifomDMsIm3s7vU7UEeiIq",
+      "createdAt": "2026-06-12T19:01:41.690Z",
+      "updatedAt": "2026-06-12T19:01:41.691Z"
     }
   },
   "companies": {
@@ -36,6 +55,22 @@
       "createdAt": "2026-06-12T11:23:53.709Z",
       "id": "7s2eamloi0o",
       "updatedAt": "2026-06-12T11:23:53.709Z"
+    },
+    "1999kplfelx": {
+      "name": "test's Company",
+      "industry": "General B2B",
+      "plan": "Standard",
+      "createdAt": "2026-06-12T19:00:54.380Z",
+      "id": "1999kplfelx",
+      "updatedAt": "2026-06-12T19:00:54.381Z"
+    },
+    "du8srg12905": {
+      "name": "Test Corp",
+      "industry": "Tech",
+      "plan": "Standard",
+      "createdAt": "2026-06-12T19:01:41.559Z",
+      "id": "du8srg12905",
+      "updatedAt": "2026-06-12T19:01:41.560Z"
     }
   },
   "invoices": {},
