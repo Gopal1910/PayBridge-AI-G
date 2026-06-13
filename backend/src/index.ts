@@ -29,11 +29,6 @@ const PORT = Number(process.env.PORT) || 8080;
 // CORE MIDDLEWARES
 // ==========================================
 
-app.use((req, res, next) => {
-  console.log(req.method, req.path);
-  next();
-});
-
 // Parse JSON payload and limit payload size to prevent DOS
 app.use(express.json({ limit: "15mb" }));
 app.use(express.urlencoded({ extended: true, limit: "15mb" }));
@@ -42,9 +37,29 @@ app.use(express.urlencoded({ extended: true, limit: "15mb" }));
 app.use(securityHeaders);
 app.use(
   cors({
-    origin: process.env.CLIENT_URL
-      ? [process.env.CLIENT_URL]
-      : [],
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      const clientUrl = process.env.CLIENT_URL;
+      if (clientUrl) {
+        const cleanClientUrl = clientUrl.replace(/\/$/, "");
+        const cleanOrigin = origin.replace(/\/$/, "");
+        if (cleanOrigin === cleanClientUrl) {
+          return callback(null, true);
+        }
+      }
+
+      // Allow any Vercel domain and localhost/127.0.0.1 for local dev
+      if (
+        origin.endsWith("vercel.app") ||
+        origin.startsWith("http://localhost:") ||
+        origin.startsWith("http://127.0.0.1:")
+      ) {
+        return callback(null, true);
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
